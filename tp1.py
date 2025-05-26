@@ -2,18 +2,18 @@
 
 import mysql.connector
 import tkinter as tk
+import os
 from tkinter import messagebox, ttk
 
 # Connexion à la base MySQL
 def get_conn():
  return mysql.connector.connect(
 host="localhost",
-user="root", # change selon ton utilisateur MySQL
-password="Ensat1984", # à adapter
+user="root", 
+password= environ.get("MYSQL_PASSWORD"),
 database="helpdesk"
 )
 
-# Ajouter utilisateur
 def ajouter_utilisateur():
  nom = entry_nom.get()
  email = entry_email.get()
@@ -25,8 +25,6 @@ def ajouter_utilisateur():
  conn.close()
  messagebox.showinfo("Succès", "Utilisateur ajouté.")
 
-# Créer un ticket
-# Créer un ticket
 def creer_ticket():
     titre = entry_titre.get()
     description = entry_description.get("1.0", tk.END).strip()
